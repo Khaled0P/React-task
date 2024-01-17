@@ -6,7 +6,7 @@
 
 @layer utilities {
   .filter-brightness {
-    filter: brightness(90%);
+    filter: brightness(65%);
   }
 
   .hover-shadow {
