@@ -12,6 +12,25 @@
   .hover-shadow {
     box-shadow: inset 0px 0px 8px 0px #a5f300, inset 0px 0px 8px 0px #a5f300;
   }
+
+  .left-circle,
+  .right-circle {
+    content: '';
+    width: 20px;
+    height: 20px;
+    box-shadow: -1px -1px 2px 0px rgba(255, 255, 255, 0.75);
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+  }
+
+  .left-circle {
+    left: 0;
+  }
+
+  .right-circle {
+    right: 0;
+  }
 }
 
 @font-face {
