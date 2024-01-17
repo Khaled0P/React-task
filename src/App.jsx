@@ -2,9 +2,10 @@ import { useState } from 'react';
 import backArrow from './assets/arrow.png';
 import Button from './components/Button';
 import Instructions from './components/Instructions';
-import Cards from './components/cards';
+
 import { CharactersContext } from '../contexts';
 import { creatures } from './constants';
+import Cards from './components/Cards';
 
 export default function App() {
   const [transformed, setTransformed] = useState([creatures[4].id]);

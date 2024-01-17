@@ -16,7 +16,7 @@ export default {
         Roboto: ['Roboto', 'sans-serif'],
       },
       backgroundImage: {
-        button: "url('./src/assets/button.png')",
+        button: "url('/src/assets/button.png')",
       },
     },
   },
