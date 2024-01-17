@@ -1,14 +1,17 @@
 import { creatures } from '../constants';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useContext } from 'react';
+import { CharactersContext } from '../../contexts';
 
-function Card({ creature, index, handleCLick, isSelected }) {
+function Card({ creature, index, handleCLick, isSelected, isTransformed }) {
   const getCurrentStyle = () => {
     return index > 2 ? 'filter-brightness' : '';
   };
   return (
     <div
-      className={`w-[225px] rounded-md cursor-pointer ${getCurrentStyle()}`}
+      className={`w-[225px] rounded-md cursor-pointer ${getCurrentStyle()} ${
+        isTransformed ? 'pointer-events-none' : '' //prevent selecting transformed item
+      }`}
       onClick={handleCLick}
     >
       <div className="relative">
@@ -25,6 +28,14 @@ function Card({ creature, index, handleCLick, isSelected }) {
         >
           Selected
         </div>
+        <div
+          className={`absolute inset-0 z-10 flex flex-col justify-center items-center bg-[rgba(0,0,0,.6)] ${
+            isTransformed ? 'block' : 'hidden'
+          }`}
+        >
+          <h1 className="text-white text-3xl">Unavailable</h1>
+          <p className="text-white text-xs">Character Transformed</p>
+        </div>
       </div>
       <div className="text-white text-center pt-2">{creature.name}</div>
     </div>
@@ -36,10 +47,11 @@ Card.propTypes = {
   index: PropTypes.number,
   handleCLick: PropTypes.func,
   isSelected: PropTypes.bool,
+  isTransformed: PropTypes.bool,
 };
 
 export default function Cards() {
-  const [selected, setSelected] = useState([]);
+  const { selected, setSelected, transformed } = useContext(CharactersContext);
 
   function handleClick(id, isSelected) {
     setSelected((prevSelected) => {
@@ -63,6 +75,7 @@ export default function Cards() {
             handleClick(creature.id, selected.includes(creature.id))
           }
           isSelected={selected.includes(creature.id)}
+          isTransformed={transformed.includes(creature.id)}
         ></Card>
       ))}
     </section>
